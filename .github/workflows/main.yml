@@ -28,6 +28,7 @@ jobs:
         export PATH=$PATH:/opt/sonar-scanner/bin
         sonar-scanner \
           -Dsonar.projectKey=GithubTesting \
+          -Dsonar.organization=sabio-one \
           -Dsonar.sources=./ \
           -Dsonar.language=java \
           -Dsonar.sourceEncoding=UTF-8 \
