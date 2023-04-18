@@ -27,7 +27,7 @@ jobs:
         sudo chmod +x /opt/sonar-scanner/bin/sonar-scanner
         export PATH=$PATH:/opt/sonar-scanner/bin
         sonar-scanner \
-          -Dsonar.projectKey=my-project \
+          -Dsonar.projectKey=GithubTesting \
           -Dsonar.sources=./ \
           -Dsonar.language=java \
           -Dsonar.sourceEncoding=UTF-8 \
