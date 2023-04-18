@@ -29,6 +29,7 @@ jobs:
         sonar-scanner \
           -Dsonar.projectKey=GithubTesting \
           -Dsonar.organization=sabio-one \
+          -Dsonar.branch.name=main \
           -Dsonar.sources=./ \
           -Dsonar.language=java \
           -Dsonar.sourceEncoding=UTF-8 \
