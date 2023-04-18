@@ -1,0 +1,38 @@
+name: Analizar calidad del código Java
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install JDK
+      run: sudo apt-get install -y openjdk-11-jdk
+
+    - name: Run SonarQube analysis
+      run: |
+        sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472.zip
+        sudo unzip sonar-scanner-cli-4.6.2.2472.zip
+        sudo mv sonar-scanner-4.6.2.2472 /opt/sonar-scanner
+        sudo chmod +x /opt/sonar-scanner/bin/sonar-scanner
+        export PATH=$PATH:/opt/sonar-scanner/bin
+        sonar-scanner \
+          -Dsonar.projectKey=my-project \
+          -Dsonar.sources=./ \
+          -Dsonar.language=java \
+          -Dsonar.sourceEncoding=UTF-8 \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.projectVersion=${{ github.sha }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
