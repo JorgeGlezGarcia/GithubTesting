@@ -30,7 +30,6 @@ jobs:
         export PATH=$PATH:/opt/sonar-scanner/bin
         sonar-scanner \
           -Dsonar.projectKey=GithubTesting \
-          -Dsonar.organization=JorgeGlezGarcia \
           -Dsonar.branch.name=main \
           -Dsonar.sources=./ \
           -Dsonar.language=java \
